@@ -1,0 +1,36 @@
+Summary of Questions and Answers - Task 5
+
+1. What does the assignment text want, don't give solution only explanation?
+It asks you to write a function that calculates a 7-day moving average from the 2025 mean-temperature data collected in Task 1, then plot the daily temperatures as points and the moving average as a line.
+
+2. What is a 7-day moving average?
+It is the average temperature across each consecutive 7-day window. 
+The window shifts forward by one day each time: days 1-7, then days 2-8, then days 3-9, and so on. 
+This smooths daily variation and helps show the overall trend.
+
+3. Is there a method for calculating moving averages, or do I need a loop?
+For a pandas Series or DataFrame column, use .rolling(window=7).mean(); an explicit loop is not needed. 
+For a plain Python list, you would generally calculate each window with a loop.
+
+4. How can I name the moving-average column inside the function?
+Add an argument for the result column's name, calculate the rolling average, and assign it to that column in a copy of the DataFrame. 
+Returning the copy preserves the original DataFrame. 
+
+5. Is it possible to plot a function?
+You can plot the values returned by a function. 
+Call the function to get the calculated values, then pass those values and the corresponding dates to the plotting function.
+
+6. What should the return type be for the moving_average function?
+Because the function returns the rolling values for one column, its return type should be pd.Series. 
+To store the result as a DataFrame column, assign it, for example: df_2025["T_avg_7day"] = moving_average(df_2025).
+
+7. How can I change the size of scatter points, like with linewidth?
+In Matplotlib's plt.scatter(), use s to control marker size (in points squared). 
+Use linewidths to change the thickness of the marker outline.
+
+8. Can I put a function directly inside .plot()?
+Yes. Call the function in the plotting expression, such as plt.plot(df_2025.index, moving_average(df_2025)). 
+The function call returns the y-values for the plot; passing the function name without parentheses would pass the function itself rather than its result.
+
+9. How can I see the column names of a DataFrame?
+Use df_2025.columns to view the column names, or list(df_2025.columns) to get them as a regular Python list.
