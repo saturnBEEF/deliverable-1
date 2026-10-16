@@ -1,0 +1,23 @@
+# Summary of Generative AI Use – INF201, Deliverable 1
+
+I used ChatGPT/Codex to support my work on the assignment, mainly Task 2, which was my responsibility. The conversation was based on the assignment instructions, Lecture 5, and our notebook.
+
+## Support with Task 2
+
+The AI explained how to retrieve precipitation data from the Frost API. It helped me understand request parameters, JSON, Python dictionaries, and how to collect dates and precipitation values in a pandas DataFrame.
+
+The AI provided concrete code examples for retrieving data, processing the API response, and plotting. These examples formed part of the basis for my work. During the conversation, I asked to work step by step and write the code myself, so I also received pseudocode and explanations of individual parts of the code.
+
+We discussed the observation periods and selected `PT6H` for precipitation. The AI identified that the request parameter should be named `timeoffsets` and that the end date should be 1 January 2026 to include all of 2025. The AI’s initial code suggestion also used the earlier end date and was corrected later.
+
+For the figure, the AI suggested displaying temperature as a line and precipitation as bars, using separate y-axes. I received explanations of `fig`, `twinx()`, `tight_layout()`, and `plt.show()`. The AI also reviewed the code and inspected the saved figure.
+
+I wrote a discussion of the plot and received feedback on its language and content. The AI also suggested a short English paragraph describing the variation in precipitation.
+
+## Other Support
+
+The conversation also covered Python virtual environments, commit messages, and the error involving `import yaml`. In addition, the AI reviewed Task 4 and identified potential problems with counting heatwaves and writing the YAML summary.
+
+## Scope of AI Assistance
+
+The AI contributed explanations, code suggestions, reviews of code and results, and suggested wording. It did not directly edit the notebook. The conversation supported my work, but the review did not constitute a complete verification of the entire submission.
