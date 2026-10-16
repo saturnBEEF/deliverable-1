@@ -1,0 +1,45 @@
+summary of questions and answers - task 4
+
+1. Heatwave Definition
+   Prompt: "What is the rule for a heatwave in Norway?"
+   Assistance: Explained that a heatwave requires 5 or more days in a row with a maximum temperature of 27.0 °C or higher.
+
+2. Finding the API Element
+   Prompt: "What is the element name for daily max temperature in the Frost API?"
+   Assistance: Identified `max(air_temperature P1D)` as the correct element code.
+
+3. Fetching API Data
+   Prompt: "How do I fetch max temperature for 2025 using Python requests?"
+   Assistance: Showed how to pass the station ID, element code, and dates in the API call.
+
+4. Reading JSON Data
+   Prompt: "How do I extract dates and temperatures from the Frost API JSON response into pandas?"
+   Assistance: Showed how to loop through the observation entries to get dates and temperature values.
+
+5. Counting Hot Days in a Row
+   Prompt: "How can I count days in a row where temp is >= 27 degrees using Python?"
+   Assistance: Showed how to append matching dates to a list while looping through the rows.
+
+6. Checking Heatwave Duration
+   Prompt: "How do I check if my list of hot days is at least 5 days long?"
+   Assistance: Used `len(current_wave) >= 5` to confirm a valid heatwave.
+
+7. Formatting Start and End Dates
+   Prompt: "How do I get just the first date and last date from a list and format them like 'YYYY-MM-DD - YYYY-MM-DD'?"
+   Assistance: Showed how to use `list` for start date and `list[-1]` for end date.
+
+8. Handling Last Day of Year
+   Prompt: "What if a heatwave is still going on December 31st?"
+   Assistance: Added a final check after the loop to save any active heatwave at year-end.
+
+9. Saving to YAML
+   Prompt: "How do I save a Python dictionary to a .yml file?"
+   Assistance: Showed how to use `yaml.dump()` to write the result to `heatwaves.yml`.
+
+10. Creating a Function
+    Prompt: "How do I wrap all this code into a function called count_heatwaves?"
+    Assistance: Structured the final function with parameters for station ID, year, and output filename.
+
+11. Improving yml output
+    Prompt: How do i change the yml file so that the output only shows the first and last day, instead of everyday?
+    Assistance: Showed where to change the code and why. Adding [0] behind current_wave.

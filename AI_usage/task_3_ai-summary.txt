@@ -1,0 +1,62 @@
+Summary of Questions and Answers - Task 3
+
+1. How to make two plots in one?
+   To draw two lines on the same axes, plot the first series and pass its axes to the second plot with ax=ax. 
+   To make two separate panels in one figure, create them first with fig, axes = plt.subplots(2, 1), then plot each series on a different axes.
+
+2. How to request data for two separate reference times, such as 2000 and 2010?
+   Make a separate API request for each date range, such as 2000-01-01/2000-12-31 and 2010-01-01/2010-12-31. 
+   Store each parsed response in a dictionary keyed by year so each result can be processed independently.
+
+3. Is r.json() important, or can I work without it?
+   Use r.json() to parse a JSON API response into Python dictionaries and lists, which makes it easy to access fields like "data". 
+   r.text gives the raw response as a string and is less convenient for working with individual fields.
+
+4. Why did frost_payloads["data"] raise KeyError?
+   frost_payloads was keyed by years, not by "data".
+   Access the data list inside each year's payload, for example payload["data"] while iterating over frost_payloads.items(), or frost_payloads[1925]["data"].
+
+5. How to plot 1925 and 2025 as separate plots in one figure?
+   Create two axes with fig, axes = plt.subplots(2, 1), then send the 2025 plot to axes[0] and the 1925 plot to axes[1].
+    Add titles and labels through each axes object.
+
+6. How to plot both years in the same plot?
+   Draw both series on the same axes. 
+   If using Pandas plotting, save the first plot's axes and pass it to the second plot with ax=ax.
+   Actual dates leave the years far apart on a continuous timeline; for a useful comparison, plot monthly averages against months 1 through 12.
+
+7. How to compare years on the same x-axis without empty space between the years?
+   Use the same x-values for both datasets. 
+   For day-by-day comparisons, replace the datetime index with month-day labels such as "%m-%d". 
+   Alternatively, calculate monthly averages and use month numbers 1 through 12.
+
+8. Overview of Matplotlib plotting, including two DataFrames and styling?
+   Matplotlib's Figure is the overall canvas and an Axes is the plotting area. 
+   Create these with fig, ax = plt.subplots(). 
+   Plot multiple datasets on the same ax, using labels for the legend. 
+   Styling options include color, linestyle, marker, linewidth, markersize, and alpha. Set titles, axis labels, grids, and legends on the axes.
+
+9. How to rename and create custom x-axis ticks?
+   Use ax.set_xticks(positions, labels=labels) or plt.xticks(positions, labels). 
+   Tick positions must correspond to the plotted x-values. 
+   Use set_xlabel() or xlabel() to set the axis title; that is different from tick labels.
+
+10. Can plt. change the ticks if the plot has no variable assigned?
+    Yes. After plotting, use plt.xticks(tick_positions, tick_labels), for example positions 1 through 12 with month names. 
+    This changes tick positions and labels, but does not move data plotted at real dates; use month numbers as x-values to compare years month-by-month.
+
+11. How to make a plot broader?
+    Set a wider figure size before plotting, for example plt.figure(figsize=(14, 5)), or pass figsize=(14, 5) to a Pandas plot. 
+    The first value is width and the second is height, in inches.
+
+12. How to put two DataFrames into one DataFrame?
+    Use pandas.concat. axis=0 stacks rows (typically when the DataFrames have the same columns);
+     axis=1 aligns them side by side as columns.
+     For year-to-year comparisons, monthly averages indexed by month can be concatenated with axis=1.
+
+13. How to rename the index and remove the year index from a summary?
+    Give each year's temperature Series a distinct name before concatenating, aggregate mean/median/min/max, and transpose if years should be rows. 
+    Set summary_combined.index.name = "Year" to name the index. Use to_string(index=False) to hide index labels when printing.
+
+14. In Markdown, how to make text bold?
+    Surround the text with two asterisks on each side: **bold text**. One asterisk on each side makes italic text.

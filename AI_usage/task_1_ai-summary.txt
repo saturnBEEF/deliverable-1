@@ -1,0 +1,42 @@
+Conversation Summary - Task 1
+
+1. Question: How do I change the color of a line plot?
+   Answer: Add a color argument to the pandas plot call, for example:
+   T_data.plot(y="T_avg", kind="line", color="crimson")
+   Color names and hex color codes can be used.
+
+2. Question: I have a plot with 12 months; how can I make ticks appear only at the months?
+   Answer: Set the x-axis tick positions and labels to the 12 months. 
+   If the months are already in the DataFrame index, use the index as labels; otherwise provide month names.
+
+3. Question: The data is in a pandas DataFrame with only one column, T_avg.
+   Answer: The DataFrame index provides the x-axis values. 
+   If the index contains month names or dates, use those for the ticks. 
+   If it contains only numbers, provide month names as labels.
+
+4. Question: I am only using one year of data, but the dataset contains many years.
+   Answer: Filter the DataFrame to a year with .loc["2025"] (replace 2025 with the desired year). 
+   For datetime-indexed data, matplotlib's MonthLocator and DateFormatter can show month labels.
+
+5. Question: That did not work. How do I filter the data if I already put a referenceTime in the request?
+   Answer: The shown conversion of referenceTime to datetime makes it the DataFrame index, but it does not itself filter rows. 
+   Use T_data.loc["2025"] if the request returns multiple years. 
+   If the request already returns one year, there is no need to filter again.
+
+6. Question: Is there another way to put the ticks at the months?
+   Answer: The screenshot already showed monthly major ticks. 
+   The small tick marks between months are minor ticks, which can be disabled with ax.minorticks_off(). 
+   Alternatively, set tick positions explicitly with pd.date_range(..., freq="MS") and label them with month abbreviations.
+
+7. Question: When is something a method and when a function? .test() versus test()
+   Answer: A method is a function associated with an object or class and is called through that object, such as T_data.plot() or ax.minorticks_off(). 
+   A standalone function is called directly, such as test(). 
+   A leading dot requires an object before it, as in some_object.test().
+
+8. Question: Explain the code that inspects the response and creates T_data.
+   Answer: r.headers.items() loops over and prints HTTP response headers.
+   r.json() parses the response body into Python data.
+   frost_payload.keys() returns its top-level keys (but will not display in a notebook unless printed or the last expression).
+   The next loop prints all top-level fields except data. 
+   The list comprehension extracts each referenceTime and the first observation's value. 
+   Finally, pandas creates a DataFrame and sets Time as its index.
